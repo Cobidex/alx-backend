@@ -50,7 +50,7 @@ class Server:
         '''
         returns the appropriate page of dataset
         '''
-        assert type(page) == int and type(page_size) == int, 'args must be ints'
+        assert type(page) == int and type(page_size) == int, 'args not ints'
         assert page > 0 and page_size > 0, 'args must not be zero'
         indexes: tuple = index_range(page, page_size)
 
