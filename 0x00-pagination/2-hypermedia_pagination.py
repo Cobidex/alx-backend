@@ -4,7 +4,7 @@ module contains the sever class and get_page method
 it also contains a copy of the index_range function
 '''
 
-
+import math
 import csv
 import math
 from typing import List
@@ -59,7 +59,6 @@ class Server:
         return self.dataset()[indexes[0]:indexes[1]]
 
     def get_hyper(self, page: int, page_size: int) -> dict:
-        import math
         '''
         get_hyper - gets information about page
         returns: dictionary
