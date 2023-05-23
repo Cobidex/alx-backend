@@ -36,8 +36,11 @@ def index() -> str:
     '''
     default route
     '''
-    welcome_message = gettext('Welcome to Holberton')
-    return render_template('2-index.html', welcome_message=welcome_message)
+    welcome_title = gettext('home_title')
+    welcome_header = gettext('home_header')
+    return render_template('2-index.html',
+                           welcome_header=welcome_message
+                           welcome_title=welcome_title)
 
 
 if __name__ == '__main__':
