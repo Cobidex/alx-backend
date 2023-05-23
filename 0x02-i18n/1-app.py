@@ -24,7 +24,7 @@ app.config.from_object(Config)
 
 
 @app.route('/')
-def index():
+def index() -> str:
     '''
     default route
     '''
