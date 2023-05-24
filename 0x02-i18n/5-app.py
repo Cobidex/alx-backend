@@ -4,9 +4,11 @@ emulate the behaviour of a simple loggin
 '''
 from flask import Flask, render_template, g, request
 from typing import Optional
+from flask_babel import Babel
 
 app = Flask(__name__)
 app.url_map.strict_slashes = False
+babel = Babel(app)
 
 users = {
     1: {"name": "Balou", "locale": "fr", "timezone": "Europe/Paris"},
@@ -28,8 +30,20 @@ def before_request():
     '''
     set user to user info
     '''
-    user_id = request.args.get("login_as", type=int)
-    g.user = get_user(user_id)
+    user_id: int = request.args.get("login_as")
+    g.user: dict = get_user(user_id)
+
+
+@babel.localeselector
+def get_locale():
+    '''
+    gets the locale of the user
+    '''
+    locale = requests.args.get('locale')
+
+    if locale and locale in app.config['LANGUAGES']:
+        return locale
+    return requests.accept_languages.best_match(app.config['LANGUAGES'])
 
 
 @app.route('/')
@@ -41,4 +55,4 @@ def index():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0', port='5000')

@@ -11,7 +11,7 @@ app = Flask(__name__)
 babel = Babel(app)
 
 
-class Config:
+class Config(object):
     LANGUAGES = ['en', 'fr']
     BABEL_DEFAULT_LOCALE = 'en'
     BABEL_DEFAULT_TIMEZONE = 'UTC'
@@ -33,11 +33,8 @@ def index():
     '''
     default route
     '''
-    welcome_title = gettext('home_title')
-    welcome_header = gettext('home_header')
-    return render_template('3-index.html', welcome_title=welcome_title,
-                           welcome_header=welcome_header)
+    return render_template('3-index.html')
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0', port='5000')

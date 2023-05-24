@@ -11,7 +11,7 @@ app = Flask(__name__)
 babel = Babel(app)
 
 
-class Config:
+class Config(object):
     '''
     defines configuration variables for flask app
     '''
@@ -28,11 +28,11 @@ def index() -> str:
     '''
     default route
     '''
-    welcome_title = gettext('home_title')
-    welcome_header = gettext('home_header')
-    return render_template('1-index.html', welcome_title=welcome_title
+    welcome_title = gettext('Hello world')
+    welcome_header = gettext('Welcome to holberton')
+    return render_template('1-index.html', welcome_title=welcome_title,
                            welcome_header=welcome_header)
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0', port='5000')
