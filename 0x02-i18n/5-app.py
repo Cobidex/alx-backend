@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+'''
+emulate the behaviour of a simple loggin
+'''
 from flask import Flask, render_template, g, request
 from typing import Optional
 
@@ -13,17 +17,26 @@ users = {
 
 
 def get_user(user_id: int) -> Optional[dict]:
+    '''
+    get user info
+    '''
     return users.get(user_id)
 
 
 @app.before_request
 def before_request():
+    '''
+    set user to user info
+    '''
     user_id = request.args.get("login_as", type=int)
     g.user = get_user(user_id)
 
 
 @app.route('/')
 def index():
+    '''
+    default route
+    '''
     return render_template('5-index.html')
 
 
